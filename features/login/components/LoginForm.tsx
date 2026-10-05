@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import getData from "@/features/login/apis/getData";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
@@ -11,12 +12,10 @@ const LoginForm = () => {
         e.preventDefault();
         // Handle login logic here
 
-        console.log("💊 form submitted: ", {
-            username,
-            password
-        });
+        const data = await getData();
+        console.log("✅ Data from API: ", data);
 
-        router.push("/authorized");
+        router.push("/authorized/admin");
     };
 
     return (
