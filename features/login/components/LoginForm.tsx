@@ -33,7 +33,7 @@ const LoginForm = () => {
             data: loginData,
             error: loginError
         } = await login({
-            user_name: username,
+            username,
             password
         });
 

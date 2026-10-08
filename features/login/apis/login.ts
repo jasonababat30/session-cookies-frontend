@@ -2,7 +2,7 @@ import api from "@/utils/api";
 import { AxiosError } from "axios";
 
 interface LoginDTO {
-    user_name: string;
+    username: string;
     password: string;
 }
 
