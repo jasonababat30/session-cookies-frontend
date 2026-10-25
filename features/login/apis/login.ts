@@ -7,7 +7,7 @@ interface LoginDTO {
 }
 
 type LoginResult = {
-    success: boolean;
+    status: "success" | "failed";
     data: { message: string } | null,
     error: { message: string } | null
 }
@@ -25,7 +25,7 @@ const login = async (credentials: LoginDTO): Promise<LoginResult> => {
         );
 
         return {
-            success: true,
+            status: "success",
             data,
             error: null
         };
@@ -33,7 +33,7 @@ const login = async (credentials: LoginDTO): Promise<LoginResult> => {
         if (error instanceof AxiosError) {
             console.error("❌ Error @ login: ", {...error});
             return {
-                success: false,
+                status: "failed",
                 data: null,
                 error: {
                     message: error.response?.data?.message
@@ -43,7 +43,7 @@ const login = async (credentials: LoginDTO): Promise<LoginResult> => {
 
         console.error("❌ Error @ login: ", error);
         return {
-            success: false,
+            status: "failed",
             data: null,
             error: { message: (error as Error)?.message || 'Something went wrong' }
         }

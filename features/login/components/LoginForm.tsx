@@ -29,7 +29,7 @@ const LoginForm = () => {
         }
 
         const {
-            success: loginSuccess,
+            status,
             data: loginData,
             error: loginError
         } = await login({
@@ -37,7 +37,7 @@ const LoginForm = () => {
             password
         });
 
-        if (!loginSuccess) {
+        if (status === "failed") {
             console.log("👩‍🌾 Login Error: ", loginError);
             setErrors(prev => ({
                 ...prev,
