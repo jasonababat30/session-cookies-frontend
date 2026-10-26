@@ -12,7 +12,7 @@ const AdminPageComponent = () => {
 
     return (
         <div
-            className="w-full h-screen bg-purple-100 text-black"
+            className="w-full h-screen bg-white text-black"
         >
             <h1>ADMIN PAGE</h1>
             <p>Name: {`${first_name} ${last_name}`}</p>
