@@ -1,11 +1,7 @@
+import AdminPageComponent from "@/features/authorized/role-admin/components/AdminPage";
+
 const AdminPage = () => {
-    return (
-        <div
-            className="w-full h-screen bg-white"
-        >
-            ADMIN PAGE
-        </div>
-    );
+    return <AdminPageComponent />
 }
 
 export default AdminPage;
