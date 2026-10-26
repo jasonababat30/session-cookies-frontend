@@ -14,7 +14,7 @@ const AuthorizedLayoutComponent = ({ children, currentUser }: AuthorizedLayoutCo
         <AuthorizedContext value={currentUser}>
             <div className="w-screen h-screen">
                 <div
-                    className="w-full h-16 bg-blue-100 flex items-center justify-center text-black font-bold text-3xl"
+                    className={`w-full h-16 ${currentUser.role === "admin" ? "bg-purple-100" : "bg-green-100"} flex items-center justify-center text-black font-bold text-3xl`}
                 >
                     AUTHORIZED LAYOUT
                 </div>
