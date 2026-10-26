@@ -1,5 +1,6 @@
-import api from "@/utils/api";
+import api, { APIResponse } from "@/utils/api";
 import { AxiosError } from "axios";
+import { CurrentUser } from "@/features/authorized/apis/get-current-user";
 
 interface LoginDTO {
     username: string;
@@ -7,14 +8,16 @@ interface LoginDTO {
 }
 
 type LoginResult = {
-    success: boolean;
-    data: { message: string } | null,
+    status: "success" | "failed";
+    data: CurrentUser | null,
     error: { message: string } | null
 }
 
 const login = async (credentials: LoginDTO): Promise<LoginResult> => {
     try {
-        const { data } = await api.post<{ message: string }>(
+        const { 
+            data: { data: loggedInUser } 
+        } = await api.post<APIResponse<CurrentUser>>(
             "/auth/login",
             credentials,
             {
@@ -25,15 +28,15 @@ const login = async (credentials: LoginDTO): Promise<LoginResult> => {
         );
 
         return {
-            success: true,
-            data,
+            status: "success",
+            data: loggedInUser,
             error: null
         };
     } catch (error) {
         if (error instanceof AxiosError) {
             console.error("❌ Error @ login: ", {...error});
             return {
-                success: false,
+                status: "failed",
                 data: null,
                 error: {
                     message: error.response?.data?.message
@@ -43,7 +46,7 @@ const login = async (credentials: LoginDTO): Promise<LoginResult> => {
 
         console.error("❌ Error @ login: ", error);
         return {
-            success: false,
+            status: "failed",
             data: null,
             error: { message: (error as Error)?.message || 'Something went wrong' }
         }

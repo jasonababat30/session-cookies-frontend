@@ -29,7 +29,7 @@ const LoginForm = () => {
         }
 
         const {
-            success: loginSuccess,
+            status,
             data: loginData,
             error: loginError
         } = await login({
@@ -37,8 +37,7 @@ const LoginForm = () => {
             password
         });
 
-        if (!loginSuccess) {
-            console.log("👩‍🌾 Login Error: ", loginError);
+        if (status === "failed") {
             setErrors(prev => ({
                 ...prev,
                 others: loginError?.message
@@ -47,9 +46,7 @@ const LoginForm = () => {
             return;
         }
 
-        console.log("✅ Data from API: ", loginData);
-
-        router.push("/authorized/admin");
+        router.push(`/authorized/${loginData?.role}`);
         setDidSubmit(false);
     };
 

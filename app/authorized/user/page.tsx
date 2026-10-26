@@ -1,11 +1,7 @@
+import UserPageComponent from "@/features/authorized/role-user/components/UserPage";
+
 const UserPage = () => {
-    return (
-        <div
-            className="w-full h-screen bg-white"
-        >
-            USER PAGE
-        </div>
-    );
+    return <UserPageComponent />;
 }
 
 export default UserPage;
