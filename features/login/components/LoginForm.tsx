@@ -38,7 +38,6 @@ const LoginForm = () => {
         });
 
         if (status === "failed") {
-            console.log("👩‍🌾 Login Error: ", loginError);
             setErrors(prev => ({
                 ...prev,
                 others: loginError?.message
@@ -47,9 +46,7 @@ const LoginForm = () => {
             return;
         }
 
-        console.log("✅ Data from API: ", loginData);
-
-        router.push("/authorized/admin");
+        router.push(`/authorized/${loginData?.role}`);
         setDidSubmit(false);
     };
 
