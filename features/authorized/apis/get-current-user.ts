@@ -25,7 +25,7 @@ const getCurrentUser = async (): Promise<GetCurrentUserResult> => {
         const { 
             data: { data: currentUser } 
         } = await api.get<APIResponse<CurrentUser>>(
-            '/user/me',
+            '/auth/me',
             {
                 headers: {
                     "Cookie": `${session?.name}=${session?.value}`
